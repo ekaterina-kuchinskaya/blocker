@@ -1,21 +1,26 @@
 {
-    "manifest_version": 2,
+  "manifest_version": 2,
 
-    "name": "URL_Block",
-    "description": "This extension blocks suspicious pages.",
-    "version": "1.0",
+  "name": "URL_Block",
 
-    "options_page":
-        "options.html",
-    "browser_action":
-    {
-        "default_icon": "URL.png",
-        "default_popup": "options.html"
-    },
-    "permissions":
-        [
-            "tabs"
-        ],
+  "description": "This extension blocks suspicious pages.",
+
+  "version": "1.0",
+
+  "options_page":
+  "options.html",
+
+  "browser_action":
+  {
+    "default_icon": "URL.png",
+    "default_popup": "options.html"
+  },
+
+  "permissions":
+  [
+    "tabs"
+  ],
+
   "content_scripts": [
     {
       "matches": ["http://*/*"],
