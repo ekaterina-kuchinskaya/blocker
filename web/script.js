@@ -1,32 +1,17 @@
 var links = JSON.parse(localStorage.getItem('links'));
 
-function checkURL(tabId, tab)
+var badTags = document.getElementsByTagName('noindex');
+deleteDangerousTags(badTags);
+badTags = document.getElementsByTagName('iframe');
+deleteDangerousTags(badTags);
+
+function deleteDangerousTags(badTags)
 {
-    if (document.readyState === "complete")
+    if(badTags != null)
     {
-        var badTag = document.getElementsByClassName('header_black');
-    }
-    if(badTag != null)
-    {
-        alert(badTag.length);
-    }
-    else
-    {
-        alert("not found");
-    }
-    for(var i = 0; i < links.length; i++)
-    {
-        if(tab.url.indexOf(links[i]) !== -1)
+        for (var i = 0; i < badTags.length; ++i)
         {
-            chrome.tabs.update(tabId, {url: "error.html"});
+            badTags[i].parentNode.removeChild(badTags[i]);
         }
     }
 }
-
-(
-    function (w)
-    {
-        chrome.tabs.onUpdated.addListener(checkURL);
-    }
-)
-(window);
