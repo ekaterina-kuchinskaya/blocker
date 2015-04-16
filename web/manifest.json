@@ -12,7 +12,7 @@
 
   "browser_action":
   {
-    "default_icon": "URL.png",
+    "default_icon": "BlockerIcon.png",
     "default_popup": "options.html"
   },
 
