@@ -12,7 +12,7 @@
 
   "browser_action":
   {
-    "default_icon": "BlockerIcon.png",
+    "default_icon": "images/BlockerIcon.png",
     "default_popup": "options.html"
   },
 
@@ -24,7 +24,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["iframeBlock.js", "script.js"]
+      "js": ["blockers/iframeBlock.js", "script.js"]
     }
   ]
 }
