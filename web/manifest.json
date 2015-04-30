@@ -24,7 +24,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["blockers/iframeBlock.js", "script.js"]
+      "js": ["blockers/iframeBlock.js", "blockers/noindexBlock.js", "blockers/bannersBlock.js"]
     }
   ]
 }
