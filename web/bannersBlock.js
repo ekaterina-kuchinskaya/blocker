@@ -1,31 +1,9 @@
 var links = JSON.parse(localStorage.getItem('links'));
-var tagsForBlock = {
-    NOINDEX: 'noindex',
-    BANER: 'baner'
-};
 window.onload = activateBlock();
 
 function activateBlock()
 {
-    blockByTagName();
     blockById();
-}
-
-function blockByTagName()
-{
-    var badTags = document.getElementsByTagName(tagsForBlock.NOINDEX);
-    deleteByTagName(badTags);
-}
-
-function deleteByTagName(badTags)
-{
-    if(badTags != null)
-    {
-        for (var i = 0; i < badTags.length; ++i)
-        {
-            badTags[i].parentNode.removeChild(badTags[i]);
-        }
-    }
 }
 
 function deleteById(badTags)
@@ -47,7 +25,7 @@ function blockById()
     allIds = getAllIds(allTagNames);
     for (var i = 0; i < allIds.length; ++i)
     {
-        if (/tagsForBlock.BANER/.test(allIds[i]))
+        if (/baner/.test(allIds[i]))
         {
           badTags.push(allIds[i]);
         }
