@@ -2,12 +2,6 @@ var tagsForBlock = {
     IFRAME: 'iframe'
 };
 
-document.onreadystatechange = function () {
-    if (document.readyState == "complete") {
-        activateBlock();
-    }
-};
-
 function activateBlock()
 {
     blockByTagName();

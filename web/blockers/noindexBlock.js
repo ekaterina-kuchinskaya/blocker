@@ -2,12 +2,6 @@ var tagsForBlock = {
     NOINDEX: 'noindex'
 };
 
-document.onreadystatechange = function () {
-    if (document.readyState == "complete") {
-        activateBlock();
-    }
-};
-
 function activateBlock()
 {
     blockByTagName();
@@ -26,6 +20,14 @@ function deleteByTagName(badTags)
         for (var i = 0; i < badTags.length; ++i)
         {
             badTags[i].parentNode.removeChild(badTags[i]);
+            //badTags[i].style.setProperty("display", "none", "important");
+            //badTags[i].style.setProperty("visibility", "hidden", "important");
+            //badTags[i].style.setProperty("opacity", "0", "important");
+            //var w = ( badTags[i].width === undefined ? -1 :  badTags[i].width);
+            //var h = ( badTags[i].height === undefined ? -1 :  badTags[i].height);
+            //badTags[i].style.setProperty("background-position", w + "px " + h + "px");
+            //badTags[i].setAttribute("width", 0);
+            //badTags[i].setAttribute("height", 0);
         }
     }
 }
