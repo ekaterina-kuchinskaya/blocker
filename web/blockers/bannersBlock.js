@@ -1,5 +1,4 @@
 var links = JSON.parse(localStorage.getItem('links'));
-window.onload = activateBlock();
 
 function activateBlock()
 {
@@ -45,4 +44,3 @@ function getAllIds(allTagNames)
     }
     return(allIds);
 }
-
