@@ -17,14 +17,24 @@
   },
 
   "permissions":
-  [
-    "tabs"
-  ],
+[
+  "tabs",
+  "webRequest",
+  "webRequestBlocking"
+],
 
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["blockers/iframeBlock.js", "blockers/noindexBlock.js", "blockers/bannersBlock.js"]
+      "js": ["jquery-2.1.3.min.js", "blockers/blockerStart.js"],
+      "run_at": "document_start",
+      "all_frames": true
     }
-  ]
+  ],
+
+  "background":
+  {
+    "scripts" : ["blockers/background.js"]
+  }
 }
+//"content_security_policy": "default-src 'none'; script-src https://apis.google.com https://platform.twitter.com; child-src https://plusone.google.com https://facebook.com https://platform.twitter.com https://youtube.com; object-src 'none'; style-src 'none'"
