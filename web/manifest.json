@@ -34,7 +34,7 @@
 
   "background":
   {
-    "scripts" : ["blockers/background.js"]
+    "scripts" : ["elementsForBlocking.js", "blockers/background.js"]
   }
 }
 //"content_security_policy": "default-src 'none'; script-src https://apis.google.com https://platform.twitter.com; child-src https://plusone.google.com https://facebook.com https://platform.twitter.com https://youtube.com; object-src 'none'; style-src 'none'"
