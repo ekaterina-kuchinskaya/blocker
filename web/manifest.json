@@ -17,11 +17,11 @@
   },
 
   "permissions":
-[
-  "tabs",
-  "webRequest",
-  "webRequestBlocking"
-],
+  [
+    "tabs",
+    "webRequest",
+    "webRequestBlocking"
+  ],
 
   "content_scripts": [
     {
