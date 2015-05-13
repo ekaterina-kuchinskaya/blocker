@@ -8,7 +8,7 @@
   "version": "1.0",
 
   "options_page":
-  "options.html",
+  "htmlPages/redirectPage.html",
 
   "browser_action":
   {
