@@ -1,0 +1,21 @@
+body
+{
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    width: 210px;
+}
+
+p
+{
+    text-align: justify;
+}
+
+#addLinkBtn
+{
+    margin-top: 12px;
+    margin-left: 31%;
+}
+
+#url
+{
+    width: 100%;
+}
