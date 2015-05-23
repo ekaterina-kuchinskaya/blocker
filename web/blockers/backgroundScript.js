@@ -18,7 +18,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab)
 	{
 		chrome.tabs.get(tabId, function (tabs)
 		{
-			var urls = localStorage.getItem("address");
+			var urls = localStorage.getItem("urls");
 			urls = CryptoJS.AES.decrypt(urls, "magicKey").toString(CryptoJS.enc.Utf8).split(";");
 			for (var i = 0; i < urls.length; ++i)
 			{

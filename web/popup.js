@@ -14,11 +14,11 @@ function addUrl()
 	{
 		url = url.substring(index + 3, url.length);
 	}
-	var urls = localStorage.getItem("address");
+	var urls = localStorage.getItem("urls");
 	urls = CryptoJS.AES.decrypt(urls, "magicKey").toString(CryptoJS.enc.Utf8);
 	if(urls.indexOf(url) == -1)
 	{
 		urls = urls.concat(";" + url);
-		localStorage.setItem("address", CryptoJS.AES.encrypt(urls, "magicKey"));
+		localStorage.setItem("urls", CryptoJS.AES.encrypt(urls, "magicKey"));
 	}
 }
