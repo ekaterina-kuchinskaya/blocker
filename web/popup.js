@@ -3,14 +3,17 @@ document.addEventListener('DOMContentLoaded', init);
 function init()
 {
 	var addLinkBtn = document.getElementById("addLinkBtn");
-	addLinkBtn.addEventListener("click", addLinkBtnClickAction, false);
+	addLinkBtn.addEventListener("click", addUrl);
 }
 
-function addLinkBtnClickAction()
+function addUrl()
 {
 	var url = document.getElementById("url").value;
 	var index = url.indexOf(":");
-	url = url.substring(index + 3, url.length);
+	if(index != -1)
+	{
+		url = url.substring(index + 3, url.length);
+	}
 	var urls = localStorage.getItem("address");
 	if(urls.indexOf(url) == -1)
 	{
