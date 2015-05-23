@@ -11,7 +11,10 @@
   "htmlPages/redirectPage.html",
 
   "web_accessible_resources":
-  ["style/style.css"],
+  [
+    "style/style.css",
+    "images/bannerMessage.png"
+  ],
 
   "browser_action":
   {
@@ -21,9 +24,7 @@
 
   "permissions":
   [
-    "tabs",
-    "webRequest",
-    "webRequestBlocking"
+    "tabs"
   ],
 
   "content_scripts": [
@@ -37,7 +38,7 @@
 
   "background":
   {
-    "scripts" : ["cryptoAlgorithms/aes.js", "cryptoAlgorithms/md5.js", "elementsForBlocking.js", "blockers/backgroundScript.js"]
+    "scripts" : ["cryptoAlgorithms/aes.js", "elementsForBlocking.js", "blockers/backgroundScript.js"]
   }
 }
 //"content_security_policy": "default-src 'none'; script-src https://apis.google.com https://platform.twitter.com; child-src https://plusone.google.com https://facebook.com https://platform.twitter.com https://youtube.com; object-src 'none'; style-src 'none'"
