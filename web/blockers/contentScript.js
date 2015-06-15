@@ -1,118 +1,86 @@
-//window.stop();
-//$('script').empty();
-
-//chrome.extension.sendRequest({command: "call"}, hideTags());
-deleteTags();
-function deleteTags() {
-    //var script = document.getElementsByTagName('script');
-    //for (var i = 0; i < script.length; ++i)
-    //{
-        //script[i].parentNode.removeChild(script[i]);
-    //}
-
-    var iframe = document.getElementsByTagName('iframe');
-    hideIframeTags(iframe);
-    for (var i = 0; i < iframe.length; ++i)
+var hidingTags = [];
+function hideBadTags(badTags)
+{
+    for (var i=0; i<badTags.length; ++i)
     {
-        iframe[i].parentNode.removeChild(iframe[i]);
-    }
-
-    var noindex = document.getElementsByTagName('noindex');
-    hideNoindexTags(noindex);
-    for (var i = 0; i < noindex.length; ++i)
-    {
-        noindex[i].parentNode.removeChild(noindex[i]);
+		badTags[i].innerHTML='';
+		setTagStyle(badTags[i]);
     }
 }
 
-function getAllChildren(tag)
+function deleteBanners(tags)
 {
-    var children=tag.childNodes;
-    var allChildren=new Array;
-    allChildren.push(children);
-    while(children)
-    {
-        //children=
-    }
+	for(var i = 0; i < tags.length; ++i)
+	{
+		tags[i].parentNode.removeChild(tags[i]);
+	}
+	hidingTags = [];
 }
 
 function setTagStyle(tag)
 {
-    var tagChildren = tag.childNodes;
-    var currentTag = tag;
-    for (var i = 0; i < tagChildren.length; i++)
-    {
-        currentTag = tagChildren[i];
-        if (/url/.test(currentTag.style.background))
-        {
-            currentTag.style.setProperty("background", "url() white", "important");
-        }
-        if (/url/.test(currentTag.style.backgroundImage))
-        {
-            currentTag.style.backgroundImage="";
-            currentTag.style.background="white";
-        }
-        if (/img/.test(currentTag))
-        {
-            currentTag.src="";
-            currentTag.style.background="white";
-        }
-        if(/src/.test(currentTag))
-        {
-            currentTag.src="";
-            currentTag.style.background="white";
-        }
-    }
-    //tag.style.setProperty("background", "white", "important");
-    //tag.style.setProperty("z-index", "20", "important");
+	var w = ( tag.width === undefined ? "100%" :  tag.width);
+	var h = ( tag.height === undefined ? "100%" :  tag.height);
+	if(w.indexOf("%") >= 0 || w == "")
+	{
+		w = "100% !important";
+	}
+	if(h.indexOf("%") >= 0 || h == "")
+	{
+		h = w;
+	}
+	if(w.indexOf("%") == -1 && w.indexOf("px") ==-1)
+	{
+		w = w + "px";
+	}
+	if(h.indexOf("%") == -1 && h.indexOf("px") ==-1)
+	{
+		h = h + "px";
+	}
+	tag.removeAttribute("class");
+	tag.removeAttribute("src");
+	tag.removeAttribute("style");
+	tag.removeAttribute("background-image");
 
-    //tag.style.setProperty("display", "none", "important");
-    //tag.style.setProperty("visibility", "hidden", "important");
-    //tag.style.setProperty("opacity", "0", "important");
-    //var w = ( tag.width === undefined ? -1 :  tag.width);
-    //var h = ( tag.height === undefined ? -1 :  tag.height);
-    //tag.style.setProperty("background-position", w + "px " + h + "px");
-    //tag.setAttribute("width", 0);
-    //tag.setAttribute("height", 0);
+	var newDiv = document.createElement("div");
+	tag.style.top = "0%";
+	tag.style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
+	tag.style.backgroundSize = "100%";
+	tag.style.backgroundRepeat = "no-repeat";
+	hidingTags.push(tag);
 }
 
-function hideIframeTags(iframe)
+function findBadTags()
 {
-
-    //chrome.extension.sendRequest({tags: "iframe"}, deleteTags);
-
-    for (var i=0; i<iframe.length; ++i)
-    {
-        var children=iframe[i].childNodes;
-        for(var j=0; j<children.length; ++i)
-        {
-            iframe[i].removeChild(children[i]);
-        }
-        setTagStyle(iframe[i]);
-    }
+	var allTagNames = document.getElementsByTagName("*");
+	var badTags = [];
+	var stringsForBlocking = CryptoJS.AES.decrypt(localStorage.getItem("strings"),  "magicKey").toString(CryptoJS.enc.Utf8).split(";");
+	for (var allTagNamesIncr = 0; allTagNamesIncr < allTagNames.length; ++ allTagNamesIncr)
+	{
+		for (var elementsForBlockingIncr = 0; elementsForBlockingIncr < ELEMENTS_FOR_BLOCKING.length; ++elementsForBlockingIncr)
+		{
+			var attribute = allTagNames[allTagNamesIncr].getAttribute(ELEMENTS_FOR_BLOCKING[elementsForBlockingIncr]);
+			if(attribute != null)
+			{
+				for(var stringsForBlockingIncr = 0; stringsForBlockingIncr < stringsForBlocking.length; ++stringsForBlockingIncr)
+				{
+					if(stringsForBlocking[stringsForBlockingIncr] != "" && attribute.indexOf(stringsForBlocking[stringsForBlockingIncr]) >= 0)
+					{
+						badTags.push(allTagNames[allTagNamesIncr]);
+					}
+				}
+			}
+		}
+	}
+	hideBadTags(badTags);
 }
 
-function hideNoindexTags(noindex) {
+$(window).load(function ()
+{
+	findBadTags();
+});
 
-    //chrome.extension.sendRequest({tags: "iframe"}, deleteTags);
-
-    for (var i=0; i<noindex.length; ++i)
-    {
-        var children=noindex[i].childNodes;
-        for(var j=0; j<children.length; ++i)
-        {
-            noindex[i].removeChild(children[i]);
-            noindex[i].appendChild('div');
-        }
-        setTagStyle(noindex[i].childNodes[0]);
-    }
-
-    var noindex = document.getElementsByTagName('noindex');
-    for (var k = 0; k < noindex.length; ++k)
-    {
-        //noindex[i].parentNode.removeChild(noindex[i]);
-        setTagStyle(noindex[k]);
-    }
-}
-
-window.onload = function(){setTimeout(deleteTags, 0);};
+$(document).ready(function ()
+{
+	findBadTags();
+});
