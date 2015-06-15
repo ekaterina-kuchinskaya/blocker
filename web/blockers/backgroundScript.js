@@ -1,17 +1,3 @@
-chrome.extension.onRequest.addListener(
-    function(request, sender, sendResponse)
-    {
-        sendResponse();
-    });
-
-chrome.webRequest.onBeforeRequest.addListener(onBeforeRequestHandler, {urls: ["http://banerator.net/*", "http://*.com/*banerator*", "*://www.adambarth.com/*"]}, ['blocking']);
-
-function onBeforeRequestHandler(details)
-{
-    var tabId = details.tabId;
-    console.log(tabId);
-}
-
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab)
 {
 	if (changeInfo.status === "loading")
