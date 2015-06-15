@@ -5,6 +5,10 @@ function hideBadTags(badTags)
     {
 		badTags[i].innerHTML='';
 		setTagStyle(badTags[i]);
+		if(hidingTags.length > 0)
+		{
+			window.setTimeout('deleteBanners(hidingTags)', 5000);
+		}
     }
 }
 
@@ -12,7 +16,10 @@ function deleteBanners(tags)
 {
 	for(var i = 0; i < tags.length; ++i)
 	{
-		tags[i].parentNode.removeChild(tags[i]);
+		if(tags[i].parentNode != null)
+		{
+			tags[i].parentNode.removeChild(tags[i]);
+		}
 	}
 	hidingTags = [];
 }
@@ -25,15 +32,15 @@ function setTagStyle(tag)
 	{
 		w = "100% !important";
 	}
+	else if(w.indexOf("%") == -1 && w.indexOf("px") ==-1)
+	{
+		w = w + "px";
+	}
 	if(h.indexOf("%") >= 0 || h == "")
 	{
 		h = w;
 	}
-	if(w.indexOf("%") == -1 && w.indexOf("px") ==-1)
-	{
-		w = w + "px";
-	}
-	if(h.indexOf("%") == -1 && h.indexOf("px") ==-1)
+	else if(h.indexOf("%") == -1 && h.indexOf("px") ==-1)
 	{
 		h = h + "px";
 	}
@@ -45,6 +52,8 @@ function setTagStyle(tag)
 	var newDiv = document.createElement("div");
 	tag.style.top = "0%";
 	tag.style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
+	tag.style.minHeight="100%";
+	tag.style.minWidth="100px";
 	tag.style.backgroundSize = "100%";
 	tag.style.backgroundRepeat = "no-repeat";
 	hidingTags.push(tag);
