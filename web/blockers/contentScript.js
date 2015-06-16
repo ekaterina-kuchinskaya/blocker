@@ -10,6 +10,7 @@ function hideBadTags(badTags)
 			window.setTimeout('deleteBanners(hidingTags)', 5000);
 		}
     }
+
 }
 
 function deleteBanners(tags)
@@ -52,8 +53,8 @@ function setTagStyle(tag)
 	var newDiv = document.createElement("div");
 	tag.style.top = "0%";
 	tag.style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
-	tag.style.minHeight="100%";
-	tag.style.minWidth="100px";
+	tag.style.minHeight = "100%";
+	tag.style.minWidth = "100px";
 	tag.style.backgroundSize = "100%";
 	tag.style.backgroundRepeat = "no-repeat";
 	hidingTags.push(tag);
@@ -86,10 +87,10 @@ function findBadTags()
 
 $(window).load(function ()
 {
-	findBadTags();
+	setTimeout('findBadTags()', 1500);
 });
 
 $(document).ready(function ()
 {
-	findBadTags();
+	setTimeout('findBadTags()', 1500);
 });
