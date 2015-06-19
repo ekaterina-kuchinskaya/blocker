@@ -1,15 +1,15 @@
 var hidingTags = [];
 function hideBadTags(badTags)
 {
-    for (var i=0; i<badTags.length; ++i)
-    {
+	for (var i=0; i<badTags.length; ++i)
+	{
 		badTags[i].innerHTML='';
 		setTagStyle(badTags[i]);
-		if(hidingTags.length > 0)
-		{
-			window.setTimeout('deleteBanners(hidingTags)', 5000);
-		}
-    }
+	}
+	if(hidingTags.length > 0)
+	{
+		window.setTimeout('deleteBanners(hidingTags)', 5000);
+	}
 
 }
 
@@ -27,37 +27,45 @@ function deleteBanners(tags)
 
 function setTagStyle(tag)
 {
-	var w = ( tag.width === undefined ? "100%" :  tag.width);
-	var h = ( tag.height === undefined ? "100%" :  tag.height);
-	if(w.indexOf("%") >= 0 || w == "")
+	var w;
+	var h;
+	if(tag.width === undefined || tag.width == 0)
 	{
-		w = "100% !important";
+		w = "100px !important";
 	}
-	else if(w.indexOf("%") == -1 && w.indexOf("px") ==-1)
+	else
 	{
-		w = w + "px";
+		w = tag.width;
 	}
-	if(h.indexOf("%") >= 0 || h == "")
+	if(tag.height === undefined || tag.height == 0)
 	{
 		h = w;
 	}
-	else if(h.indexOf("%") == -1 && h.indexOf("px") ==-1)
+	else
 	{
-		h = h + "px";
+		h = tag.height;
 	}
 	tag.removeAttribute("class");
-	tag.removeAttribute("src");
+	//tag.removeAttribute("src");
 	tag.removeAttribute("style");
-	tag.removeAttribute("background-image");
+	//tag.removeAttribute("background-image");
 
-	var newDiv = document.createElement("div");
-	tag.style.top = "0%";
-	tag.style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
-	tag.style.minHeight = "100%";
-	tag.style.minWidth = "100px";
-	tag.style.backgroundSize = "100%";
-	tag.style.backgroundRepeat = "no-repeat";
+	var img = document.createElement("img");
+	img.src = chrome.extension.getURL("/images/bannerMessage.png");
+	//tag.style.top = "0%";
+	//tag.style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
+	//tag.style.backgroundSize = w + " " + h;
+	////tag.style.width = "170px";
+	////tag.style.zIndex = "99999999";
+	////tag.style.position = "absolute";
+	//tag.style.backgroundRepeat = "no-repeat";
+	tag.appendChild(img);
 	hidingTags.push(tag);
+}
+
+function hideBodyBackground(bodyTag)
+{
+	bodyTag.style.backgroundImage = "";
 }
 
 function findBadTags()
@@ -82,15 +90,41 @@ function findBadTags()
 			}
 		}
 	}
+	var body = document.getElementsByTagName("body");
+	for(var i = 0; i < body.length; ++i)
+	{
+		if (body[i] != null && body[i].getAttribute("style") != null && (body[i].getAttribute("style").indexOf("bel1.adriver.ru") >= 0 || body[i].getAttribute("style").indexOf("bel2.adriver.ru") >= 0))
+		{
+			body[i].style.backgroundImage = "url(" + chrome.extension.getURL("/images/bannerMessage.png") + ")";
+			window.setTimeout('hideBodyBackground(body[i])', 5000);
+		}
+	}
 	hideBadTags(badTags);
 }
 
 $(window).load(function ()
 {
-	setTimeout('findBadTags()', 1500);
+	findBadTags();
 });
 
 $(document).ready(function ()
 {
-	setTimeout('findBadTags()', 1500);
+	findBadTags();
 });
+
+function disableHyperlinks(){
+	onclickEvents = Array();
+	var anchors = document.getElementsByTagName("a");
+	for(var i = 0; i < anchors.length; i++){
+		onclickEvents.push(anchors[i].onclick);
+		anchors[i].onclick=function(){return false;};
+	}
+}
+
+function enableHyperlinks(){
+	var anchors = document.getElementsByTagName("a");
+	for(var i = 0; i < anchors.length; i++){
+		anchors[i].onclick = onclickEvents[i];
+	}
+}
+
