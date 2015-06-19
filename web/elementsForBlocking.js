@@ -3,21 +3,25 @@ ELEMENTS_FOR_BLOCKING =
     "src",
     "class",
 	"style",
-	"id"
+	"id",
+	"href"
 ];
 
 URLS_FOR_BLOCKING =
 {
 	PROTOCOLS : "http[s]?://",
-	URLS : "\.\*v.com\/\.\*;\.\*watchever.de\/\.\*"
+	URLS : "\.\*bestbless.com.ua/dva-dereva-v-sadu\/\.\*;\.\*milf\.\*;\.\*narcotik\.\*;\.\*narkotic\.\*;\.\*sex\.\*;\.\*porn\.\*;" +
+	"channel4.com;\.\*watchever.de\/\.\*"
 };
 
 STRINGS_FOR_BLOCKING =
 {
 	//STRINGS : "MarketGid;bn_vf;baner;bn_f1;mgline;cgsc;ololo"
-	STRINGS : "amsb;banner;cbntut;ad_ph_1;MarketGid;bn_vf;baner;bn_f1;mgline;cgsc;ololo;ad_box;ad_channel=;ad_classid=;ad_height=;ad_keyword=;" +
-	"ad_network_;ad_number=;ad_type=;" +
-	"ad_type_;ad_url=;ad_zones=;adbannerid=;adclient=;adcount=;adgroupid=;admeld_;admid=;" +
+	STRINGS : "adsbygoogle;adunit;ox_;http://80.240.133.13;lx_346069;yandex_ad_R-63012-3;xmusic.wm-scripts.ru/x_left.php;nav005;side-links;adriver_728x90;tut_by;adriver_240x400;ambn629153;bn_h7YIga7nfd;" +
+	"amsb;banner;cbntut;ad_ph_1;MarketGid;bn_vf;baner;bn_f1;mgline;cgsc;ololo;ad_box;ad_channel=;ad_classid=;ad_height=;ad_keyword=;" +
+	"google_ad;root_template_div;google_ads;google_ads_frame1;googleads.g.doubleclick;yap-layout" +
+	"ad_network_;ad_number=;ad_type=;ban160Katalog;ad_iframe;swiffycontainer;" +
+	"ad_type_;ad_url=;ad_zones=;adbannerid=;adclient=;adcount=;adgroupid=;admeld_;admid=;yandex_ad_R-63012-1;" +
 	"adname=;adnet=;adnum=;adpageurl=;adsafe=;adserver=;adsize=;adslot=;adslots=;adsourceid=;" +
 	"adspace=;adstype=;adType=PREROLL;adunit=;adurl=;adv_keywords=;advert_;advertiserid=;advid=;" +
 	"advtile=;adzone=;banner_id=;clicktag=http;customSizeAd=;displayads=;expandable_ad_;gIncludeExternalAds=;" +
@@ -55,7 +59,7 @@ STRINGS_FOR_BLOCKING =
 	"adwolf;ae/ads/;ar/ads/;ashx?ad=;ashx?AdID=;asp?coad;aspx?ad=;aspx?adid=;at/ads/;au/ads/;banner%20ad;" +
 	"bbn.by/;biz/ad;biz/ad/;biz/ad2/;biz/ads/;bns1.net/;box.ad;br/ads/;ca/ads/;cc/ads/;cfm?ad=;cgi?ad=;" +
 	"ch/ads/;ch/adv/;clkads;co/ads/;co/ads?;com/?ad=;com/?wid=;com/a?network;com/a?pagetype;com/a?size;" +
-	"com/ad;ad-tuning.de;com/ad/;channel4.com;com/ad2/;com/ad6/;com/ad?;com/adclk?;" +
+	"com/ad;ad-tuning.de;com/ad/;com/ad2/;com/ad6/;com/ad?;com/adclk?;" +
 	"com/adds/;com/adgallery;com/adinf/;com/adlib/;com/adlib_;com/adpicture;com/ads-;com/ads;com/ads/$image,object,subdocument;" +
 	"com/ads?;com/ads_;com/adv/;com/adv3/;com/adv?;com/adv_;com/adx/;com/adx_;com/adz/;com/bads/;com/doubleclick/;" +
 	"com/gads/;com/im-ad/;com/im_ad/;com/iplgadshow;com/js.ng/;com/js/ad;com/js/ads/;com/js/adsense;com/miads/;" +
@@ -652,11 +656,7 @@ STRINGS_FOR_BLOCKING =
 // /adverth.
 // /adverthorisontalfullwidth.
 // /advertical.
-// /advertise-
-// /advertise;advertise.bingads.microsoft.com
-// /advertise/*
-// /advertise125x125.
-// /advertise_
+// /advertise;
 // /advertisehere.
 // /advertisement-
 // /advertisement.
@@ -676,25 +676,15 @@ STRINGS_FOR_BLOCKING =
 // /advertisements_
 // /AdvertisementShare.
 // /advertisementview/*
-// /advertiser;advertiser.growmobile.com
-// /advertiser/*;bingads.microsoft.com;mobileapptracking.com;trialpay.com
-// /advertisers.$image,script,subdocument
-// /advertisers/*
 // /advertiserwidget.
-// /advertises/*
 // /advertisewithus_
-// /advertising-;outbrain.com
-// /advertising.
 // /advertising/*$~xmlhttprequest;~temple.edu
 // /advertising02.
 // /advertising2.
 // /advertising300x250.
 // /advertising?
 // /advertising_
-// /advertisingbanner.
-// /advertisingbanner/*
-// /advertisingbanner1.
-// /advertisingbanner_
+// /advertisingbanner
 // /advertisingcontent/*
 // /AdvertisingIsPresent6?
 // /advertisinglinks_
@@ -702,27 +692,18 @@ STRINGS_FOR_BLOCKING =
 // /advertisingmodule.
 // /advertisings.
 // /advertisingwidgets/*
-// /advertisment-
-// /advertisment.
-// /advertisment/*
-// /advertisment1-
-// /advertisment_
-// /advertisments/*
+// /advertisment
 // /advertize_
 // /advertlayer.
 // /advertmedia/*
 // /advertmsig.
-// /advertorial/*
-// /advertorial_
-// /advertorials/*
+// /advertorial
 // /advertphp/*
 // /advertpixelmedia1.
 // /advertpro/*
 // /advertrail.
 // /advertright.
-// /adverts.
-// /adverts/*
-// /adverts_
+// /adverts
 // /advertserve.
 // /advertsky.
 // /advertsquare.
@@ -733,13 +714,7 @@ STRINGS_FOR_BLOCKING =
 // /advfiles/*
 // /advhd.
 // /advice-ads.
-// /adview.
-// /adview/*
-// /adview?
-// /adview_
-// /adviewas3.
-// /adviewed.
-// /adviewer.
+// /adview
 // /adviframe/*
 // /advinfo.
 // /advision.
@@ -1427,7 +1402,6 @@ STRINGS_FOR_BLOCKING =
 // /digest/ads.
 // /digg_ads.
 // /digg_ads_
-// /dinclinx.com/*
 // /direct_ads.
 // /directads.
 // /directadvert.
@@ -1550,7 +1524,7 @@ STRINGS_FOR_BLOCKING =
 // /eros.htm
 // /eshopoffer.
 // /esi/ads/*
-// /etology;etology.com
+// /etology;
 // /euads/*
 // /event.ng/*
 // /excellence/ads/*
@@ -1564,10 +1538,7 @@ STRINGS_FOR_BLOCKING =
 // /exo120x60.
 // /exobanner.
 // /exoclick.
-// /exoclickright.
-// /exoclickright1.
-// /exoclickright2.
-// /exoclickright3.
+// /exoclickright
 // /expandable_ad.php
 // /expandable_ad?
 // /expandingads.
@@ -1579,10 +1550,7 @@ STRINGS_FOR_BLOCKING =
 // /ext_ads.
 // /extadv/*
 // /extendedadvert.
-// /external/ad.
-// /external/ad/*
-// /external/ads/*
-// /external_ads.
+// /external/ad
 // /externalad.
 // /ExternalAdNetworkViewlogLogServlet?
 // /externalads/*
